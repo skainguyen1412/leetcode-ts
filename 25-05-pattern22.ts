@@ -16,26 +16,20 @@ class Solution {
 
         // As print we must write from left to right and top to down
 
-        for (let i = 1; i <= size; i++) {
+        for (let i = 0; i < size; i++) {
             let row = "";
-            for (let j = 1; j <= size; j++) {
-                let value;
-                // First row
-                if (i == 1) {
-                    value = n;
-                }
-                if (i >= 2) {
-                    if (j == 1 || j == size) {
-                        value = n;
-                    } else {
-                        value = n - i + 1;
-                    }
-                }
-                // Second column n - 1
-                row += value;
+            for (let j = 0; j < size; j++) {
+                // Find the smallest distance at the position ij with the matrix size
+                const smallestDistance = Math.min(
+                    i,
+                    j,
+                    size - i - 1,
+                    size - j - 1,
+                );
 
-                // TODO:  Need to visualize and figure out the algorithm f(n)
+                row += n - smallestDistance;
             }
+
             console.log(row);
         }
     }
