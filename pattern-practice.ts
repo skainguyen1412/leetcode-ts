@@ -72,8 +72,62 @@ class Solution {
             console.log(row);
         }
     }
+
+    // 26-05
+    pattern19(n) {
+        const size = 2 * n;
+
+        for (let i = 0; i < size; i++) {
+            let row = "";
+            const middle1 = size / 2 - 1;
+            const middle2 = size / 2 + 1 - 1;
+            const middleColumn = size / 2;
+            for (let j = 0; j < size; j++) {
+                // With this exercise we aim at middle points
+                // and then expand as column increase
+                // until we hit the bounds then we reverse
+                const isBound =
+                    i == 0 || i == size - 1 || j == 0 || j == size - 1;
+
+                const isBlank = () => {
+                    if (isBound) {
+                        return false;
+                    }
+
+                    if (i >= middleColumn) {
+                        // Downer
+                        const start = 0;
+                        const end = size - 1;
+                        if (
+                            j > start + i - middleColumn &&
+                            j < end - i + middleColumn
+                        ) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    } else {
+                        // Upper
+                        if (j >= middle1 - i + 1 && j <= middle2 + i - 1) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                };
+
+                if (isBlank()) {
+                    row += " ";
+                } else {
+                    row += "*";
+                }
+            }
+
+            console.log(row);
+        }
+    }
 }
 
 const main = new Solution();
 
-main.pattern21(3);
+main.pattern19(4);
