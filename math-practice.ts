@@ -1,5 +1,6 @@
 class MathSolution {
     findGCD(n1: number, n2: number) {
+        // 27-06
         //         Example 1:
         // Input: N1 = 9, N2 = 12
         // Output: 3
