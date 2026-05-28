@@ -17,6 +17,7 @@ class SortSolution {
     }
 
     insertionSort(arr: number[]) {
+        // 28-08
         // pseudocode
         // for i: 1 to length(A) - 1
         //     j = i
