@@ -42,7 +42,43 @@ class SortSolution {
 
         console.log(arr);
     }
+
+    mergeSort(arr: number[]) {
+        // Merge sort will split the arr into multiple sub array, until it got only
+        // one element left, then we merge them one by one and sort them
+        if (arr.length == 1) {
+            //TODO: Implement merge function
+        }
+
+        const half = Math.floor(arr.length / 2);
+
+        const firstHalf = arr.slice(0, half);
+        const secondHalf = arr.slice(half);
+
+        // this.mergeSort(firstHalf);
+        // this.mergeSort(secondHalf);
+    }
 }
 
+function merge(firstArr: number[], secondArr: number[]) {
+    const resultArr = [];
+
+    for (let i = 0; i < firstArr.length; i++) {
+        for (let j = 0; j < secondArr.length; j++) {
+            if (firstArr[i] < secondArr[j]) {
+                resultArr.push(firstArr[i]);
+                continue;
+            } else {
+                resultArr.push(secondArr[i]);
+                continue;
+            }
+        }
+    }
+
+    return resultArr;
+}
+
+console.log(merge([1, 3], [2, 4]));
+
 const testSort = new SortSolution();
-testSort.insertionSort([3, 1, 5, 4]);
+testSort.mergeSort([3, 1, 5, 4]);
