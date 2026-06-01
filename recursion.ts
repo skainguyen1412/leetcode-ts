@@ -42,7 +42,22 @@ class RecursionPractice {
         this.printNto1(goal, current + 1);
         console.log(current);
     }
+
+    sumFirstNForward(n, current = n) {
+        // Input: N=5
+        // Output: 15
+        // Explanation: 1+2+3+4+5=15
+        // Backtrack because the 1 execute first
+
+        if (current < 1) {
+            return 0;
+        }
+
+        let sum = current + this.sumFirstNForward(n, current - 1);
+        console.log(current);
+        return sum;
+    }
 }
 
 const recursion = new RecursionPractice();
-recursion.printNto1(4);
+console.log(recursion.sumFirstNForward(5));
