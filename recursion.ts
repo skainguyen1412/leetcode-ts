@@ -93,30 +93,47 @@ class RecursionPractice {
         // This is ok approach cause it have O(n/2) but it introduce unneeded complexity
         // with two if else
         // This approach from middle to outside
+        // let middle;
+        // if (arr.length % 2 !== 0) {
+        //     middle = Math.round(arr.length / 2) - 1;
+        //     let i = 1;
+        //     while (middle + i < arr.length) {
+        //         let tempt = arr[middle + i];
+        //         arr[middle + i] = arr[middle - i];
+        //         arr[middle - i] = tempt;
+        //         i++;
+        //     }
+        // } else {
+        //     middle = arr.length / 2;
+        //     let i = 0;
+        //     while (middle - i - 1 >= 0) {
+        //         let tempt = arr[middle + i];
+        //         arr[middle + i] = arr[middle - i - 1];
+        //         arr[middle - i - 1] = tempt;
+        //         i++;
+        //     }
+        // }
+        // console.log(arr);
+        // ----------------
+        // Approach from outside two middle is better cause we don"t need to handle if else case
 
         let middle;
 
-        if (arr.length % 2 !== 0) {
-            middle = Math.round(arr.length / 2) - 1;
-
-            let i = 1;
-            while (middle + i < arr.length) {
-                let tempt = arr[middle + i];
-                arr[middle + i] = arr[middle - i];
-                arr[middle - i] = tempt;
-
-                i++;
-            }
-        } else {
+        if (arr.length % 2 == 0) {
             middle = arr.length / 2;
+        } else {
+            middle = Math.round(arr.length / 2) - 1;
+        }
 
-            let i = 0;
-            while (middle - i - 1 >= 0) {
-                let tempt = arr[middle + i];
-                arr[middle + i] = arr[middle - i - 1];
-                arr[middle - i - 1] = tempt;
-                i++;
-            }
+        let low = 0;
+        let high = arr.length - 1;
+        let i = 0;
+
+        while (low + i < middle) {
+            let tempt = arr[low + i];
+            arr[low + i] = arr[high - i];
+            arr[high - i] = tempt;
+            i++;
         }
 
         console.log(arr);
@@ -124,4 +141,4 @@ class RecursionPractice {
 }
 
 const recursion = new RecursionPractice();
-recursion.reverseArray([4, 3, 2, 1, 2]);
+recursion.reverseArray([2, 3, 4, 2]);
