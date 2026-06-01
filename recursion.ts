@@ -48,6 +48,7 @@ class RecursionPractice {
         // Output: 15
         // Explanation: 1+2+3+4+5=15
         // Backtrack because the 1 execute first
+        // Do this we dont have to make a sum parameter
 
         if (current < 1) {
             return 0;
