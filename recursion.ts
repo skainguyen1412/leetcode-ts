@@ -138,7 +138,27 @@ class RecursionPractice {
 
         console.log(arr);
     }
+
+    fibonacciNumber(n, current = n) {
+        // Input: n = 4
+        // Output: 3
+        // Explanation: F(4) = F(3) + F(2) = 2 + 1 = 3.
+
+        if (current == 1) {
+            return 1;
+        }
+
+        if (current == 0) {
+            return 0;
+        }
+
+        let total =
+            this.fibonacciNumber(n, current - 1) +
+            this.fibonacciNumber(n, current - 2);
+
+        return total;
+    }
 }
 
 const recursion = new RecursionPractice();
-recursion.reverseArray([2, 3, 4, 2]);
+console.log(recursion.fibonacciNumber(4));
