@@ -84,7 +84,44 @@ class RecursionPractice {
 
         return sum;
     }
+
+    reverseArray(arr: number[]) {
+        // Input: N = 5, arr[] = {5,4,3,2,1}
+        // Output: {1,2,3,4,5}
+        // Explanation: Since the order of elements gets reversed the first element will occupy the fifth position, the second element occupies the fourth position and so on.
+        // O(n/2)
+        // This is ok approach cause it have O(n/2) but it introduce unneeded complexity
+        // with two if else
+        // This approach from middle to outside
+
+        let middle;
+
+        if (arr.length % 2 !== 0) {
+            middle = Math.round(arr.length / 2) - 1;
+
+            let i = 1;
+            while (middle + i < arr.length) {
+                let tempt = arr[middle + i];
+                arr[middle + i] = arr[middle - i];
+                arr[middle - i] = tempt;
+
+                i++;
+            }
+        } else {
+            middle = arr.length / 2;
+
+            let i = 0;
+            while (middle - i - 1 >= 0) {
+                let tempt = arr[middle + i];
+                arr[middle + i] = arr[middle - i - 1];
+                arr[middle - i - 1] = tempt;
+                i++;
+            }
+        }
+
+        console.log(arr);
+    }
 }
 
 const recursion = new RecursionPractice();
-console.log(recursion.factorialNumber(5));
+recursion.reverseArray([4, 3, 2, 1, 2]);
