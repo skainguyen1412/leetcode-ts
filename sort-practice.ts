@@ -43,42 +43,55 @@ class SortSolution {
         console.log(arr);
     }
 
-    mergeSort(arr: number[]) {
+    mergeSort(arr: number[], low = 0, high = arr.length - 1) {
         // Merge sort will split the arr into multiple sub array, until it got only
         // one element left, then we merge them one by one and sort them
-        if (arr.length == 1) {
-            //TODO: Implement merge function
+
+        if (low >= high) {
+            return;
         }
 
-        const half = Math.floor(arr.length / 2);
+        function merge(low, middle, high) {
+            let result = [];
 
-        const firstHalf = arr.slice(0, half);
-        const secondHalf = arr.slice(half);
+            let i = low;
+            let j = middle + 1;
 
-        // this.mergeSort(firstHalf);
-        // this.mergeSort(secondHalf);
-    }
-}
+            while (i <= middle && j <= high) {
+                if (arr[i] <= arr[j]) {
+                    result.push(arr[i]);
+                    i++;
+                } else {
+                    result.push(arr[j]);
+                    j++;
+                }
+            }
 
-function merge(firstArr: number[], secondArr: number[]) {
-    const resultArr = [];
+            while (i <= middle) {
+                result.push(arr[i]);
+                i++;
+            }
 
-    for (let i = 0; i < firstArr.length; i++) {
-        for (let j = 0; j < secondArr.length; j++) {
-            if (firstArr[i] < secondArr[j]) {
-                resultArr.push(firstArr[i]);
-                continue;
-            } else {
-                resultArr.push(secondArr[i]);
-                continue;
+            while (j <= high) {
+                result.push(arr[j]);
+                j++;
+            }
+
+            for (let i = 0, j = low; i < result.length; i++, j++) {
+                arr[j] = result[i];
             }
         }
-    }
 
-    return resultArr;
+        let middle = Math.floor((low + high) / 2);
+
+        this.mergeSort(arr, low, middle);
+        this.mergeSort(arr, middle + 1, high);
+
+        merge(low, middle, high);
+    }
 }
 
-console.log(merge([1, 3], [2, 4]));
-
 const testSort = new SortSolution();
-testSort.mergeSort([3, 1, 5, 4]);
+const arr = [3, 1, 5, 4];
+testSort.mergeSort(arr);
+console.log(arr);
