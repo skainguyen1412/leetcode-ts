@@ -89,6 +89,55 @@ class SortSolution {
 
         merge(low, middle, high);
     }
+
+    mergeSortPractice() {
+        //https://leetcode.com/problems/merge-sorted-array/?utm_source=chatgpt.com
+        /**
+ Do not return anything, modify nums1 in-place instead.
+ */
+        function merge(
+            nums1: number[],
+            m: number,
+            nums2: number[],
+            n: number,
+        ): void {
+            let low1 = 0;
+            let high1 = m - 1;
+            let low2 = 0;
+            let high2 = n - 1;
+            let result = [];
+
+            while (low1 <= high1 && low2 <= high2) {
+                if (nums1[low1] <= nums2[low2]) {
+                    result.push(nums1[low1]);
+                    low1++;
+                } else {
+                    result.push(nums2[low2]);
+                    low2++;
+                }
+            }
+
+            while (low1 <= high1) {
+                result.push(nums1[low1]);
+                low1++;
+            }
+
+            while (low2 <= high2) {
+                result.push(nums2[low2]);
+                low2++;
+            }
+
+            if (nums1.length >= nums2.length) {
+                for (let i = 0; i < nums1.length; i++) {
+                    nums1[i] = result[i];
+                }
+            } else {
+                for (let i = 0; i < nums2.length; i++) {
+                    nums2[i] = result[i];
+                }
+            }
+        }
+    }
 }
 
 const testSort = new SortSolution();
