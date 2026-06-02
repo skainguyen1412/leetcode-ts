@@ -190,5 +190,3 @@ class SortSolution {
 
 const testSort = new SortSolution();
 const arr = [3, 1, 5, 4, 6, 2, 3, 1, 3];
-testSort.recursiveBubbleSort(arr);
-console.log(arr);
