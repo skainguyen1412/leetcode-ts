@@ -144,6 +144,7 @@ class SortSolution {
         // Basically swap until it get sort
         // Basically On^2
 
+        // Cach tu nghi ra
         if (times >= arr.length - 1) {
             return;
         }
@@ -160,6 +161,30 @@ class SortSolution {
         }
 
         this.recursiveBubbleSort(arr, current + 1, times);
+
+        // Cach tren mang
+
+        function bubbleSort(arr, n) {
+            // Base case
+            if (n === 1) return;
+
+            let didSwap = false;
+
+            // Perform one pass
+            for (let j = 0; j < n - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // Swap using destructuring
+                    [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                    didSwap = true;
+                }
+            }
+
+            // If no swaps, array is already sorted
+            if (!didSwap) return;
+
+            // Recursive call for smaller size
+            bubbleSort(arr, n - 1);
+        }
     }
 }
 
