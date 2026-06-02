@@ -138,9 +138,32 @@ class SortSolution {
             }
         }
     }
+
+    recursiveBubbleSort(arr: number[], current = 0, times = 0) {
+        // First let see what is bubble sort
+        // Basically swap until it get sort
+        // Basically On^2
+
+        if (times >= arr.length - 1) {
+            return;
+        }
+
+        if (current >= arr.length - 1 - times) {
+            this.recursiveBubbleSort(arr, 0, times + 1);
+            return;
+        }
+
+        if (arr[current] > arr[current + 1]) {
+            const temp = arr[current];
+            arr[current] = arr[current + 1];
+            arr[current + 1] = temp;
+        }
+
+        this.recursiveBubbleSort(arr, current + 1, times);
+    }
 }
 
 const testSort = new SortSolution();
-const arr = [3, 1, 5, 4];
-testSort.mergeSort(arr);
+const arr = [3, 1, 5, 4, 6, 2, 3, 1, 3];
+testSort.recursiveBubbleSort(arr);
 console.log(arr);
