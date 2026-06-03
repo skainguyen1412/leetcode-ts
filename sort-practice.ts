@@ -1,3 +1,5 @@
+import { swap } from "./helper";
+
 class SortSolution {
     bubbleSort(arr: number[]) {
         // bubble sort basically swap between position
@@ -226,14 +228,6 @@ function pivotSort(arr, low, high): number {
     return j;
 }
 
-function swap(arr, i, j) {
-    let tempt = arr[i];
-    arr[i] = arr[j];
-    arr[j] = tempt;
-}
-
 const testSort = new SortSolution();
 const arr = [4, 6, 4, 5, 7, 4, 1, 3];
 testSort.quickSort(arr);
-
-console.log(arr);
