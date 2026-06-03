@@ -186,7 +186,54 @@ class SortSolution {
             bubbleSort(arr, n - 1);
         }
     }
+
+    quickSort(arr: number[], low = 0, high = arr.length - 1) {
+        if (low >= high) {
+            return;
+        }
+
+        const pivotIndex = pivotSort(arr, low, high);
+        this.quickSort(arr, low, pivotIndex - 1);
+        this.quickSort(arr, pivotIndex + 1, high);
+    }
+}
+
+function pivotSort(arr, low, high): number {
+    //TODO: This function will pick a pivot and sort and then return the index of the pivot at correct place
+
+    const pivot = arr[low];
+
+    let i = low + 1;
+
+    let j = high;
+
+    while (i <= j) {
+        while (arr[i] <= pivot && i <= high) {
+            i++;
+        }
+
+        while (arr[j] > pivot && j >= low) {
+            j--;
+        }
+
+        if (i < j) {
+            swap(arr, i, j);
+        }
+    }
+
+    swap(arr, low, j);
+    console.log(arr, low, high);
+    return j;
+}
+
+function swap(arr, i, j) {
+    let tempt = arr[i];
+    arr[i] = arr[j];
+    arr[j] = tempt;
 }
 
 const testSort = new SortSolution();
-const arr = [3, 1, 5, 4, 6, 2, 3, 1, 3];
+const arr = [4, 6, 4, 5, 7, 4, 1, 3];
+testSort.quickSort(arr);
+
+console.log(arr);
