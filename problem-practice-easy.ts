@@ -47,11 +47,60 @@ class ProblemEasyPractice {
 
         return union;
     }
+
+    findMissingNumber(arr: number[]): number {
+        // https://www.geeksforgeeks.org/dsa/find-the-missing-number/
+        // TODO: Implement 3 ways, hashing, sum, XOR
+
+        function hash() {
+            const n = arr.length + 1;
+            // Can be using Map as well i think it also better
+            // Map<number,number> .set, .get, .has
+            const hashTable: Record<number, boolean> = {};
+
+            for (let i = 0; i < arr.length; i++) {
+                hashTable[arr[i]] = true;
+            }
+
+            for (let i = 1; i <= n; i++) {
+                if (!hashTable[i]) {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        function sum() {
+            let sumArr = 0;
+
+            let sumN = () => {
+                let result = 0;
+
+                for (let i = 1; i <= arr.length + 1; i++) {
+                    console.log(i);
+                    result += i;
+                }
+
+                return result;
+            };
+
+            for (let i = 0; i < arr.length; i++) {
+                sumArr += arr[i];
+            }
+
+            return sumN() - sumArr;
+        }
+
+        console.log(sum());
+
+        return -1;
+    }
 }
 
 const problemEasy = new ProblemEasyPractice();
 
-const arr1 = [1, 2, 3, 4, 5];
-const arr2 = [2, 3, 4, 4, 5];
+const arr = [8, 2, 4, 5, 3, 7, 1];
 
-problemEasy.unionTwoSortedArr(arr1, arr2);
+const value = problemEasy.findMissingNumber(arr);
+console.log(value);
