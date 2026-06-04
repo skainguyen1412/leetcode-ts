@@ -92,7 +92,26 @@ class ProblemEasyPractice {
             return sumN() - sumArr;
         }
 
-        console.log(sum());
+        function xor() {
+            const n = arr.length + 1;
+            let xor1 = 0,
+                xor2 = 0;
+
+            // XOR all array elements
+            for (let i = 0; i < n - 1; i++) {
+                xor2 ^= arr[i];
+            }
+
+            // XOR all numbers from 1 to n
+            for (let i = 1; i <= n; i++) {
+                xor1 ^= i;
+            }
+
+            // Missing number is the XOR of xor1 and xor2
+            return xor1 ^ xor2;
+        }
+
+        console.log(xor());
 
         return -1;
     }
