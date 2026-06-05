@@ -32,6 +32,42 @@ class ProblemMedium {
 
         return this.findKthLargest(nums, k, pivotIndex + 1, high);
     }
+
+    groupShiftedStrings(strs: string[]): string[][] {
+        let result: string[][] = [];
+        let hashMap: Map<number, string[]> = new Map();
+
+        // Tim ra shifted
+        for (let i = 0; i < strs.length; i++) {
+            let shiftedValue;
+
+            if (strs[i].length <= 1) {
+                shiftedValue = 0;
+            } else {
+                shiftedValue =
+                    strs[i][1].charCodeAt(0) - strs[i][0].charCodeAt(0);
+
+                if (shiftedValue < 0) {
+                    shiftedValue = shiftedValue + 26;
+                }
+            }
+
+            if (hashMap.has(shiftedValue)) {
+                let tempt = hashMap.get(shiftedValue);
+                tempt.push(strs[i]);
+
+                hashMap.set(shiftedValue, tempt);
+            } else {
+                hashMap.set(shiftedValue, [strs[i]]);
+            }
+        }
+
+        for (const value of hashMap.values()) {
+            result.push(value);
+        }
+
+        return result;
+    }
 }
 
 function partition(arr, low, high) {
@@ -61,7 +97,6 @@ function partition(arr, low, high) {
 
 const testProblem = new ProblemMedium();
 
-const arr = [7, 6, 5, 4, 3, 2, 1];
+const strings = ["abc", "bcd", "acef", "xyz", "az", "ba", "a", "z"];
 
-const largestK = testProblem.findKthLargest(arr, 2);
-console.log(largestK);
+console.log(testProblem.groupShiftedStrings(strings));

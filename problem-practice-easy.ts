@@ -115,6 +115,13 @@ class ProblemEasyPractice {
 
         return -1;
     }
+
+    findingNumberAppearOne() {
+        // Example 1:
+        // Input Format: arr[] = {2,2,1}
+        // Result: 1
+        // Explanation: In this array, only the element 1 appear once and so it is the answer.
+    }
 }
 
 const problemEasy = new ProblemEasyPractice();
