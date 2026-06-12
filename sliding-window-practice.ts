@@ -45,7 +45,35 @@ class SlidingWindow {
 
         return false;
     }
+
+    variableSlidingWindow(arr: number[], target: number): number {
+        // Find shortest subarray where sum is or equal to target: O(n)
+        // Each number is positive >= 0
+
+        let minLength = arr.length + 1;
+        let left = 0;
+        let right = 0;
+        let sum = arr[right];
+
+        for (; left < arr.length; left++) {
+            if (right >= arr.length) {
+                continue;
+            }
+
+            while (right < arr.length && sum < target) {
+                right++;
+                sum += arr[right];
+            }
+
+            if (sum >= target) {
+                sum -= arr[left];
+                minLength = Math.min(minLength, right - left + 1);
+            }
+        }
+
+        return minLength == arr.length + 1 ? 0 : minLength;
+    }
 }
 
 const slidingMain = new SlidingWindow();
-console.log(slidingMain.fixedKSlidingWindow([1, 2, 3, 2, 3], 3));
+console.log(slidingMain.variableSlidingWindow([10, 1, 10], 10));
