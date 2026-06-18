@@ -29,6 +29,11 @@ class Interview {
 
         reverseElementIndex(0, k - 1);
         reverseElementIndex(k, nums.length - 1);
-        console.log(nums);
+    }
+
+    mergeSortPractice() {
+        function recursiveMergeSort() {
+
+        }
     }
 }
